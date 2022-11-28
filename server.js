@@ -20,6 +20,10 @@ server.post('/upload-profile-pic', upload.single('profile_pic'), (req, res) => {
     return res.status(200).send(`<h2>Here is the picture:</h2><img src="${req.file.path}" alt="something" />`);
 })
 
+server.post('/upload-cat-pic', (req, res) => {
+    
+})
+
 // error handling middleware you always need 4 parameters. (need to pass with the following structure err, req, res and next )
 server.use((err, req, res, next) => {
     return res.status(500).send(`<h2>${err.message}</h2>`)
