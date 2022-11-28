@@ -14,7 +14,7 @@ server.post('/upload-profile-pic', upload.single('profile_pic'), (req, res) => {
     // return res.status(400).send("Please upload a file");
     throw new Error('Please upload an image');
 
-    return res.status(200).send(`<h2>Here is the picture:</h2><img src="${req.file.path}" alt="something" />`);
+    return res.status(200).send(`<h2>Here is the picture:</h2><img src="${req.file.filename}" alt="something" />`);
 })
 
 server.post('/upload-cat-pics', upload.array('cat_pics', 5), (req, res) => {
