@@ -9,7 +9,7 @@ server.use(express.static('views'));
 server.use(express.static('.'));
 server.use(express.static("uploads"));
 
-server.get('/get-pics', async (req, res) => {
+server.get('/get-pics', async (req, res, next) => {
 try {
  const { rows } = await pool.query("SELECT name, filename FROM pictures")
  const allCatPics = rows.map(
