@@ -1,13 +1,33 @@
 require('dotenv').config();
 const express = require('express')
 const server = express();
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 7000;
 const multer = require("multer");
 const {upload} = require('./lib/multerConfig')
 const pool = require('./DB/dbConnection');
 
 server.use(express.static('views'));
 server.use(express.static('.'));
+
+server.get('/get-pics', async (req, res) => {
+try {
+ const { rows } = await pool.query("SELECT name, filename FROM pictures")
+ const allCatPics = rows.map(
+     (image) => {
+        // console.log(image);
+     return `<li><a href="${image.filename}">${image.name}</a></li>`}
+   )
+   .join("");
+// const allCatPics = rows
+//     .map(
+//     (image) => `<div> <img src="${image.filename}" alt="something" /></div>`
+//     )
+//     .join("");
+ return res.status(200).send(`<ul>${allCatPics}</ul>`);
+} catch (error) {
+    next(error)
+}
+})
 
 // ---- for non DB
 // server.post('/upload-profile-pic', upload.single('profile_pic'), (req, res) => {
