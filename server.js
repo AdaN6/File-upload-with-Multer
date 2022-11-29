@@ -2,12 +2,12 @@ require('dotenv').config();
 const express = require('express')
 const server = express();
 const port = process.env.PORT || 7000;
-const multer = require("multer");
 const {upload} = require('./lib/multerConfig')
 const pool = require('./DB/dbConnection');
 
 server.use(express.static('views'));
 server.use(express.static('.'));
+server.use(express.static("uploads"));
 
 server.get('/get-pics', async (req, res) => {
 try {
