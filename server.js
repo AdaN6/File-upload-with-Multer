@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express')
 const server = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 6000;
 const multer = require("multer");
 const {upload} = require('./lib/multerConfig')
 const pool = require('./DB/dbConnection');
